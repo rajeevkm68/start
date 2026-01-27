@@ -8,7 +8,7 @@ resource "aws_key_pair" "local_key" {
 
 resource "aws_security_group" "ssh_sg" {
 
-  name = "${local.project_name}-${local.environment}-ssh"
+  name        = "${local.project_name}-${local.environment}-ssh"
   description = "Allow SSH inbound traffic"
 
   ingress {
@@ -29,7 +29,7 @@ resource "aws_security_group" "ssh_sg" {
 resource "aws_instance" "example" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
-  
+
   key_name = aws_key_pair.local_key.key_name
 
   vpc_security_group_ids = [
