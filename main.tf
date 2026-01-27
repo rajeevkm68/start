@@ -7,7 +7,9 @@ resource "aws_key_pair" "local_key" {
 }
 
 resource "aws_security_group" "ssh_sg" {
-  name = "allow_ssh"
+
+  name = "${local.project_name}-${local.environment}-ssh"
+  description = "Allow SSH inbound traffic"
 
   ingress {
     from_port   = 22
