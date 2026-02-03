@@ -3,7 +3,7 @@ data "aws_region" "current" {}
 
 resource "aws_key_pair" "local_key" {
   key_name   = "rajeev_key"
-  public_key = file("~/.ssh/id_ed25519.pub")
+  public_key = file(pathexpand(var.public_key_path))
 }
 
 resource "aws_security_group" "ssh_sg" {
@@ -15,7 +15,7 @@ resource "aws_security_group" "ssh_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # learning only
+    cidr_blocks = [var.ssh_ingress_cidr]
   }
 
   egress {
@@ -24,6 +24,8 @@ resource "aws_security_group" "ssh_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags = local.common_tags
 }
 
 resource "aws_instance" "example" {
@@ -36,11 +38,13 @@ resource "aws_instance" "example" {
     aws_security_group.ssh_sg.id
   ]
 
-  tags = {
-    Name = "HelloWorld"
-  }
+  tags = merge(
+    local.common_tags,
+    {
+      Name = "HelloWorld"
+    }
+  )
 }
-
 
 
 

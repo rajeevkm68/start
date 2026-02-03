@@ -1,11 +1,10 @@
 locals {
   project_name = "terraform-demo"
   environment  = "dev"
-  region       = "ap-south-1"
 
   common_tags = {
-    Project     = "terraform-demo"
-    Environment = "dev"
+    Project     = local.project_name
+    Environment = local.environment
     ManagedBy   = "Terraform"
   }
 }
