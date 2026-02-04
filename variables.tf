@@ -1,19 +1,27 @@
 variable "instance_type" {
-  default = "t3.micro"
+  type        = string
+  description = "EC2 instance type to launch"
+  default     = "t3.micro"
 }
 
 variable "region" {
-  default = "ap-south-1"
+  type        = string
+  description = "AWS region to deploy resources"
+  default     = "ap-south-1"
 }
 
 variable "ssh_ingress_cidr" {
-  default = "0.0.0.0/0" # learning only; set to your IP/CIDR in real use
+  type        = string
+  description = "CIDR block allowed to SSH into EC2"
 }
 
 variable "public_key_path" {
-  default = "~/.ssh/id_ed25519.pub"
+  type        = string
+  description = "Path to the SSH public key file"
 }
 
 variable "ami_owner" {
-  default = "099720109477" # Ubuntu
+  type        = string
+  description = "Owner ID of the AMI publisher"
 }
+

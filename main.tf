@@ -1,5 +1,4 @@
 
-data "aws_region" "current" {}
 
 resource "aws_key_pair" "local_key" {
   key_name   = "rajeev_key"
@@ -32,6 +31,7 @@ resource "aws_instance" "example" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
 
+
   key_name = aws_key_pair.local_key.key_name
 
   vpc_security_group_ids = [
@@ -45,6 +45,4 @@ resource "aws_instance" "example" {
     }
   )
 }
-
-
 
