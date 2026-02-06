@@ -25,6 +25,6 @@ variable "public_key_path" {
 variable "ami_owner" {
   type        = string
   description = "Owner ID of the AMI publisher"
-  default     = "amazon"
+  default     = "099720109477"
 }
 

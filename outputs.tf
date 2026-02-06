@@ -48,3 +48,7 @@ output "tags" {
   value       = local.common_tags
 }
 
+output "ssh_connection_command" {
+  description = "Command to SSH into the instance"
+  value       = "ssh -i ~/.ssh/id_ed25519 ubuntu@${aws_instance.example.public_ip}"
+}
