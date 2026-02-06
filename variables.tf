@@ -13,15 +13,18 @@ variable "region" {
 variable "ssh_ingress_cidr" {
   type        = string
   description = "CIDR block allowed to SSH into EC2"
+  default     = "0.0.0.0/0"
 }
 
 variable "public_key_path" {
   type        = string
   description = "Path to the SSH public key file"
+  default     = "~/.ssh/id_ed25519.pub"
 }
 
 variable "ami_owner" {
   type        = string
   description = "Owner ID of the AMI publisher"
+  default     = "amazon"
 }
 
