@@ -12,7 +12,6 @@ resource "aws_security_group" "ssh_sg" {
   )
 }
 
-
 resource "aws_key_pair" "local_key" {
   key_name   = "rajeev_key"
   public_key = file(pathexpand(var.public_key_path))
