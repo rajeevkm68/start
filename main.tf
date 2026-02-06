@@ -3,8 +3,15 @@ resource "aws_security_group" "ssh_sg" {
   name        = "${local.project_name}-${local.environment}-ssh"
   description = "Allow SSH inbound traffic"
   vpc_id      = data.aws_vpc.default.id
-  tags        = local.common_tags
+
+  tags = merge(
+    local.common_tags,
+    {
+      Name = "${local.project_name}-${local.environment}-ssh"
+    }
+  )
 }
+
 
 resource "aws_key_pair" "local_key" {
   key_name   = "rajeev_key"
